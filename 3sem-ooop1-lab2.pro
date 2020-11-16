@@ -10,17 +10,17 @@ CONFIG += console
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Note.cpp \
+    Work_with_notes.cpp \
     main.cpp \
     mainwindow.cpp \
-    note.cpp \
-    note_window.cpp \
-    work_with_notes.cpp
+    note_window.cpp
 
 HEADERS += \
+    Note.h \
+    Work_with_notes.h \
     mainwindow.h \
-    note.h \
-    note_window.h \
-    work_with_notes.h
+    note_window.h
 
 FORMS += \
     mainwindow.ui \

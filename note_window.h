@@ -2,6 +2,7 @@
 #define NOTE_WINDOW_H
 
 #include <QDialog>
+#include "Work_with_notes.h"
 
 
 namespace Ui {

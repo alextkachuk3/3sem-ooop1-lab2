@@ -1,4 +1,4 @@
-#include "note.h"
+#include "Note.h"
 
 Note::Note()
 {
@@ -15,5 +15,10 @@ Note::Note(QString text, bool is_archived, QDateTime creation_date)
 QDateTime Note::get_creation_date()
 {
     return this->creation_date;
+}
+
+bool operator<(const Note& lft, const Note& rgt)
+{
+    return lft.creation_date<rgt.creation_date;
 }
 

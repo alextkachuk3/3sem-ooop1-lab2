@@ -15,6 +15,7 @@ public:
     QString text;
     bool is_archived;
     QDateTime get_creation_date();
+    friend bool operator<(const Note& lft, const Note& rgt);
 };
 
 #endif // NOTE_H

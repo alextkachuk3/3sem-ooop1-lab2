@@ -1,6 +1,7 @@
 #include "note_window.h"
 #include "ui_note_window.h"
 
+
 note_window::note_window(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::note_window)
