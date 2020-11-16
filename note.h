@@ -3,14 +3,18 @@
 
 #include <QString>
 #include <QVector>
+#include <QDateTime>
 
-class note
+class Note
 {
+private:
+    QDateTime creation_date;
 public:
-    note();
+    Note();
+    Note(QString text, bool is_archived, QDateTime creation_date);
     QString text;
-    int media_count;
-    QVector<QString> media_dir;
+    bool is_archived;
+    QDateTime get_creation_date();
 };
 
 #endif // NOTE_H

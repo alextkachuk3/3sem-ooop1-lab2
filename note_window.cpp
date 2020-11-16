@@ -13,8 +13,8 @@ QDialog(parent),
 ui(new Ui::note_window)
 {
 ui->setupUi(this);
-ui->textEdit->append("daer\n meow");
-ui->textEdit->append("lil\n lol");
+//ui->textEdit->append("daer\n meow");
+//ui->textEdit->append("lil\n lol");
 }
 
 note_window::~note_window()

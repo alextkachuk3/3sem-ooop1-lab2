@@ -13,12 +13,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     note.cpp \
-    note_window.cpp
+    note_window.cpp \
+    work_with_notes.cpp
 
 HEADERS += \
     mainwindow.h \
     note.h \
-    note_window.h
+    note_window.h \
+    work_with_notes.h
 
 FORMS += \
     mainwindow.ui \

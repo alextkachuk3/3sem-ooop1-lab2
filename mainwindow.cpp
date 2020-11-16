@@ -26,7 +26,7 @@ void MainWindow::on_listWidget_doubleClicked(const QModelIndex &index)
     note_window note_w(index.row());
     note_w.setModal(true);
     note_w.exec();
-   qDebug() << index.row();
+    qDebug() << index.row();
                 if( !index.isValid() ) {
                     return;
             }
