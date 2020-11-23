@@ -20,6 +20,12 @@
       <property name="autoScroll">
        <bool>false</bool>
       </property>
+      <property name="dragDropMode">
+       <enum>QAbstractItemView::InternalMove</enum>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::ExtendedSelection</enum>
+      </property>
       <property name="movement">
        <enum>QListView::Free</enum>
       </property>

@@ -3,8 +3,8 @@
 
 #include <QMainWindow>
 #include <QListWidgetItem>
-#include "note_window.h"
-#include "work_with_notes.h"
+#include "NoteWindow/note_window.h"
+#include "Note/work_with_notes.h"
 #include <QtGui>
 
 QT_BEGIN_NAMESPACE

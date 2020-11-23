@@ -39,6 +39,9 @@ Work_with_notes::Work_with_notes()
         current_note_date_time = QDateTime::fromString(note_file_prop.readLine(), "yyyy-MM-dd HH.mm.ss");
         note_file_prop.close();
         Note new_note(current_note_text, current_note_is_archived, current_note_date_time);
+        if(new_note.is_archived)
+        this->archived_notes_sets.insert(new_note);
+            else
         this->notes_sets.insert(new_note);
     }
 }
@@ -57,6 +60,17 @@ QVector<QString*> Work_with_notes::get_notes_texts()
     }
     return result;
 }
+
+QVector<QString*> Work_with_notes::get_archived_notes_texts()
+{
+    QVector<QString*> result;
+    for(const auto &a : archived_notes_sets)
+    {
+        result.push_back(a.text);
+    }
+    return result;
+}
+
 
 void Work_with_notes::add_note(QString* new_text)
 {
@@ -80,6 +94,8 @@ void Work_with_notes::add_note(QString* new_text)
     note_w.setModal(true);
     note_w.exec();
 }
+
+
 
 void Work_with_notes::edit_note()
 {

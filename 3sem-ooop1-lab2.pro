@@ -10,21 +10,24 @@ CONFIG += console
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Note.cpp \
-    Work_with_notes.cpp \
+    ArchiveNoteWindow/archive_note_window.cpp \
+    Note/note.cpp \
+    Note/work_with_notes.cpp \
+    NoteWindow/note_window.cpp \
     main.cpp \
     mainwindow.cpp \
-    note_window.cpp
 
 HEADERS += \
-    Note.h \
-    Work_with_notes.h \
+    ArchiveNoteWindow/archive_note_window.h \
+    Note/note.h \
+    Note/work_with_notes.h \
+    NoteWindow/note_window.h \
     mainwindow.h \
-    note_window.h
 
 FORMS += \
+    ArchiveNoteWindow/archive_note_window.ui \
+    NoteWindow/note_window.ui \
     mainwindow.ui \
-    note_window.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
