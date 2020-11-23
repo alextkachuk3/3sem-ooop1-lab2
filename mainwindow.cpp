@@ -3,38 +3,26 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
+    , app_notes(new Work_with_notes)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-        Work_with_notes app_notes;
+    for(const auto a: app_notes->get_notes_texts())
+    {
+        ui->listWidget->addItem(*a);
+    }
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete app_notes;
 }
 
 
 void MainWindow::on_add_new_note_clicked()
 {
-    QListWidgetItem* short_note = new QListWidgetItem("");
-    ui->listWidget->addItem(short_note);
-}
-
-
-void MainWindow::on_listWidget_doubleClicked(const QModelIndex &index)
-{
-    note_window note_w(index.row());
-    note_w.setModal(true);
-    note_w.exec();
-    /*qDebug() << index.row();
-                if( !index.isValid() ) {
-                    return;
-            }
-
-            if( QListWidget* listWgt = dynamic_cast< QListWidget* >( sender() ) ) {
-                if( QListWidgetItem* item = listWgt->takeItem( index.row() ) ) {
-                    delete item;
-                }
-            }*/
+    QString* new_text = new QString;
+    this->app_notes->add_note(new_text);
+    ui->listWidget->addItem(*new_text);
 }

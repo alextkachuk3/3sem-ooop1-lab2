@@ -3,20 +3,21 @@
 
 #include <set>
 #include "Note.h"
-#include <QtCore/QHash>
-#include <QtCore/QSet>
+#include "note_window.h"
 #include <QFile>
+#include <QTextStream>
+#include <QDir>
 
 class Work_with_notes
 {
 private:
     QVector<QString> notes_dir;
-    //QSet<Note> notes_sets;
     std::set<Note> notes_sets;
 public:
     Work_with_notes();
+    QVector<QString*> get_notes_texts();
     int get_note_count();
-    void add_note();
+    void add_note(QString* text);
     void edit_note();
     void delete_note();
 };

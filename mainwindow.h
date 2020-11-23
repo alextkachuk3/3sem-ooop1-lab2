@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QListWidgetItem>
 #include "note_window.h"
+#include "work_with_notes.h"
 #include <QtGui>
 
 QT_BEGIN_NAMESPACE
@@ -17,11 +18,10 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    Work_with_notes* app_notes;
 
 private slots:
     void on_add_new_note_clicked();
-
-    void on_listWidget_doubleClicked(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;
