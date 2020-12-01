@@ -6,6 +6,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(ui->listWidget, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(slotEditRecord()));
+    connect(ui->listWidget, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(slotCustomMenuRequested(QPoint)));
 }
 
 MainWindow::~MainWindow()
@@ -16,5 +19,27 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_listWidget_customContextMenuRequested(const QPoint &pos)
 {
+    QMenu * menu = new QMenu(this);
+    QAction * deleteNote = new QAction("Delete", this);
+    QAction * archiveNote = new QAction("Archive", this);
+    connect(deleteNote, SIGNAL(triggered()), this, SLOT(slotDeleteRecord()));     // Обработчик вызова диалога редактирования
+    connect(archiveNote, SIGNAL(triggered()), this, SLOT(slotArchiveRecord()));
+    menu->addAction(deleteNote);
+    menu->addAction(archiveNote);
+    menu->popup(ui->listWidget->viewport()->mapToGlobal(pos));
+}
 
+void MainWindow::on_pushButton_clicked()
+{
+    ui->listWidget->addItem("meow");
+}
+
+void MainWindow::slotDeleteRecord()
+{
+    int row = ui->listWidget->selectionModel()->currentIndex().row();
+}
+
+void MainWindow::slotArchiveRecord()
+{
+    int row = ui->listWidget->selectionModel()->currentIndex().row();
 }

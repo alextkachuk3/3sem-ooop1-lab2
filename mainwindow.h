@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "note.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,6 +18,11 @@ public:
 
 private slots:
     void on_listWidget_customContextMenuRequested(const QPoint &pos);
+    //QVector<Note*> main_notes;
+    //QVector<Note*> archive_notes;
+    void on_pushButton_clicked();
+    void slotDeleteRecord();
+    void slotArchiveRecord();
 
 private:
     Ui::MainWindow *ui;
