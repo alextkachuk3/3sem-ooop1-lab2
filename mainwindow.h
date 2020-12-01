@@ -27,6 +27,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+    void slotOpenGK();
+    void slotNewNoteGK();
+
 private slots:
     void on_listWidget_customContextMenuRequested(const QPoint &pos);
     //QVector<Note*> main_notes;
@@ -34,6 +38,7 @@ private slots:
     void on_pushButton_clicked();
     void slotDeleteRecord();
     void slotArchiveRecord();
+
 
 private:
     Ui::MainWindow *ui;

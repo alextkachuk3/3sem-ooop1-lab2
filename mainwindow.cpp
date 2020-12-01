@@ -14,6 +14,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->listWidget, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(slotEditRecord()));
     connect(ui->listWidget, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(slotCustomMenuRequested(QPoint)));
+
+
+    shortcutFirst = new QGlobalShortcut(this);
+    connect(shortcutFirst, &QGlobalShortcut::activated, this, &MainWindow::slotOpenGK);
+    shortcutFirst->setShortcut(QKeySequence("Ctrl+O"));
+    shortcutSecond = new QGlobalShortcut(this);
+    connect(shortcutSecond, &QGlobalShortcut::activated, this, &MainWindow::slotNewNoteGK);
+    shortcutSecond->setShortcut(QKeySequence("Ctrl+N"));
 }
 
 MainWindow::~MainWindow()
@@ -34,6 +42,15 @@ void MainWindow::on_listWidget_customContextMenuRequested(const QPoint &pos)
     menu->popup(ui->listWidget->viewport()->mapToGlobal(pos));
 }
 
+void MainWindow::slotOpenGK()
+{
+    showNormal();
+}
+
+void MainWindow::slotNewNoteGK()
+{
+    ui->pushButton->click();
+}
 
 void MainWindow::on_pushButton_clicked()
 {
