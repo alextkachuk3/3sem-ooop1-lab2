@@ -22,7 +22,7 @@ void MainWindow::on_listWidget_customContextMenuRequested(const QPoint &pos)
     QMenu * menu = new QMenu(this);
     QAction * deleteNote = new QAction("Delete", this);
     QAction * archiveNote = new QAction("Archive", this);
-    connect(deleteNote, SIGNAL(triggered()), this, SLOT(slotDeleteRecord()));     // Обработчик вызова диалога редактирования
+    connect(deleteNote, SIGNAL(triggered()), this, SLOT(slotDeleteRecord()));
     connect(archiveNote, SIGNAL(triggered()), this, SLOT(slotArchiveRecord()));
     menu->addAction(deleteNote);
     menu->addAction(archiveNote);
@@ -31,15 +31,27 @@ void MainWindow::on_listWidget_customContextMenuRequested(const QPoint &pos)
 
 void MainWindow::on_pushButton_clicked()
 {
-    ui->listWidget->addItem("meow");
+    QString* new_text = new QString;
+    auto nEditor = new textNoteEditor(new_text);
+    nEditor->setModal(true);
+    nEditor->exec();
+    if(new_text->length())
+    {
+        ui->listWidget->addItem(*new_text);
+        ui->listWidget->item(ui->listWidget->count() - 1)->setBackground(QColor(qrand()%255,qrand()%255,qrand()%255));
+    }
+    delete new_text;
+    delete nEditor;
 }
 
 void MainWindow::slotDeleteRecord()
 {
     int row = ui->listWidget->selectionModel()->currentIndex().row();
+    ui->listWidget->takeItem(row);
 }
 
 void MainWindow::slotArchiveRecord()
 {
     int row = ui->listWidget->selectionModel()->currentIndex().row();
+    ui->listWidget->takeItem(row);
 }

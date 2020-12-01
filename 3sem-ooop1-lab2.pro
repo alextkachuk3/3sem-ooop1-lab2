@@ -11,14 +11,17 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    note.cpp
+    note.cpp \
+    textnoteeditor.cpp
 
 HEADERS += \
     mainwindow.h \
-    note.h
+    note.h \
+    textnoteeditor.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    textnoteeditor.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
