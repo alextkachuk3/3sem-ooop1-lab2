@@ -1,3 +1,8 @@
+/**
+*   @file textnoteeditor.cpp
+*	@author Alex Tkachuk
+*	@version 1.0
+*/
 #include "textnoteeditor.h"
 #include "ui_textnoteeditor.h"
 

@@ -1,3 +1,8 @@
+/**
+*   @file main.cpp
+*	@author Alex Tkachuk
+*	@version 1.0
+*/
 #include "mainwindow.h"
 
 #include <QApplication>
