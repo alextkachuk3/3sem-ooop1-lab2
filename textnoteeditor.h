@@ -1,8 +1,3 @@
-/**
-*   @file textnoteeditor.h
-*	@author Alex Tkachuk
-*	@version 1.0
-*/
 #ifndef TEXTNOTEEDITOR_H
 #define TEXTNOTEEDITOR_H
 

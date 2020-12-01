@@ -8,29 +8,20 @@ CONFIG += c++11
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-linux {
-    QT       += x11extras
-    CONFIG   += link_pkgconfig
-    PKGCONFIG += x11
-}
-
-win32: SOURCES += win/qglobalshortcut.cpp
-linux: SOURCES += x11/qglobalshortcut.cpp
-
-HEADERS  += qglobalshortcut.h
-
 SOURCES += \
-    NoteEditor/textnoteeditor.cpp \
     main.cpp \
     mainwindow.cpp \
+    note.cpp \
+    textnoteeditor.cpp
 
 HEADERS += \
-    NoteEditor/textnoteeditor.h \
     mainwindow.h \
+    note.h \
+    textnoteeditor.h
 
 FORMS += \
-    NoteEditor/textnoteeditor.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    textnoteeditor.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
