@@ -1,3 +1,8 @@
+/**
+*   @file mainwindow.cpp
+*	@author Alex Tkachuk
+*	@version 1.0
+*/
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -29,6 +34,7 @@ void MainWindow::on_listWidget_customContextMenuRequested(const QPoint &pos)
     menu->popup(ui->listWidget->viewport()->mapToGlobal(pos));
 }
 
+
 void MainWindow::on_pushButton_clicked()
 {
     QString* new_text = new QString;
@@ -40,9 +46,28 @@ void MainWindow::on_pushButton_clicked()
         ui->listWidget->addItem(*new_text);
         ui->listWidget->item(ui->listWidget->count() - 1)->setBackground(QColor(qrand()%255,qrand()%255,qrand()%255));
     }
+    QVector<QString> text_for_write;
+    QString cur_line;
+    for(const auto &a: *new_text)
+    {
+        if(a=='\n')
+        {
+            text_for_write.push_back(cur_line);
+        }
+        else
+        {
+            cur_line += a;
+        }
+    }
     delete new_text;
     delete nEditor;
+    /*if(!QDir(QDir::homePath() + "/notes").exists())
+       {
+           QDir().mkdir(QDir::homePath() + "/notes");
+       }*/
+
 }
+
 
 void MainWindow::slotDeleteRecord()
 {
