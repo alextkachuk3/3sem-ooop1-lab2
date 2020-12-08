@@ -9,6 +9,7 @@ namespace Ui {
 class ArchiveWindow;
 }
 
+//Window for archived notes
 class ArchiveWindow : public QDialog
 {
     Q_OBJECT

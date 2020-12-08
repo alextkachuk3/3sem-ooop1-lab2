@@ -6,6 +6,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+//Main window constructor
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -61,6 +62,7 @@ MainWindow::MainWindow(QWidget *parent)
     note_file.close();
 }
 
+//Main window destructor
 MainWindow::~MainWindow()
 {
     QFile note_file(QDir::homePath() + "/notes/notes.txt");
@@ -77,32 +79,40 @@ MainWindow::~MainWindow()
         note_file.write(QString::number(a.is_archived).toUtf8() + '\n');
         note_file.write(a.text.toUtf8() + '\n');
     }
+    note_file.close();
     delete ui;
 }
 
+//Context menu which pop after right mouse click, allow to delete, edit and combine notes
 void MainWindow::on_listWidget_customContextMenuRequested(const QPoint &pos)
 {
     QMenu * menu = new QMenu(this);
     QAction * archiveNote = new QAction("Archive", this);
     QAction * editNote = new QAction("Edit", this);
+    QAction * combineNotes = new QAction("Combine", this);
     connect(archiveNote, SIGNAL(triggered()), this, SLOT(slotArchiveRecord()));
     connect(editNote, SIGNAL(triggered()), this, SLOT(slotEditRecord()));
+    connect(combineNotes, SIGNAL(triggered()), this, SLOT(slotGetNotes()));
     menu->addAction(archiveNote);
        menu->addAction(editNote);
+       menu->addAction(combineNotes);
     menu->popup(ui->listWidget->viewport()->mapToGlobal(pos));
 
 }
 
+//Slot for global key for open main window
 void MainWindow::slotOpenGK()
 {
     showNormal();
 }
 
+//Slot for global key for open new note window
 void MainWindow::slotNewNoteGK()
 {
     ui->pushButton->click();
 }
 
+//Add new note after botton click
 void MainWindow::on_pushButton_clicked()
 {
     QString* new_text = new QString;
@@ -135,6 +145,7 @@ void MainWindow::on_pushButton_clicked()
 
 }
 
+//Sent note from main window to archive
 void MainWindow::slotArchiveRecord()
 {
     int row = ui->listWidget->selectionModel()->currentIndex().row();
@@ -145,6 +156,7 @@ void MainWindow::slotArchiveRecord()
     archived.push_back(to_archive);
 }
 
+//Allow to edit notes in main menu
 void MainWindow::slotEditRecord()
 {
     int row = ui->listWidget->selectionModel()->currentIndex().row();
@@ -163,9 +175,25 @@ void MainWindow::slotEditRecord()
     delete new_text;
 }
 
+//Open archive
 void MainWindow::on_pushButton_archive_clicked()
 {
     auto Archive_Window = new ArchiveWindow(archived);
     Archive_Window->setModal(true);
     Archive_Window->exec();
+}
+
+//Combine selected notes in main menu to one file
+void MainWindow::slotGetNotes()
+{
+    auto selected_notes = ui->listWidget->selectedItems();
+
+    QFile note_file(QDir::homePath() + "/notes/combined_notes.txt");
+    note_file.open(QIODevice::WriteOnly| QIODevice::Text);
+
+    for(const auto &a : selected_notes)
+    {
+        note_file.write(a->text().toUtf8() + '\n');
+    }
+    note_file.close();
 }

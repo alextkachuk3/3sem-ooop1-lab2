@@ -15,16 +15,13 @@
 #include "QTextStream"
 #include "note.h"
 #include "archivewindow.h"
+#include <QList>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-/**
- * @brief Main window of the program
- *
- * Program allow to create notes.
- */
+//Main program window for working with notes
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -42,6 +39,7 @@ private slots:
     void on_pushButton_clicked();
     void slotArchiveRecord();
     void slotEditRecord();
+    void slotGetNotes();
     void on_pushButton_archive_clicked();
 
 

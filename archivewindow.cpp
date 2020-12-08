@@ -1,6 +1,7 @@
 #include "archivewindow.h"
 #include "ui_archivewindow.h"
 
+//Archived notes window constructor
 ArchiveWindow::ArchiveWindow(QVector<Note> archived_notes, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ArchiveWindow)
@@ -12,6 +13,7 @@ ArchiveWindow::ArchiveWindow(QVector<Note> archived_notes, QWidget *parent) :
     }
 }
 
+//Archived notes window destructor
 ArchiveWindow::~ArchiveWindow()
 {
     delete ui;
