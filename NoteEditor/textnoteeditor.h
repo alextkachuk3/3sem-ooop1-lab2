@@ -23,6 +23,8 @@ public:
 private slots:
     void on_pushButton_save_clicked();
 
+    void on_textEdit_textChanged();
+
 private:
     Ui::textNoteEditor *ui;
     QString *text_ptr;

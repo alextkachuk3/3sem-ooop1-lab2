@@ -7,8 +7,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFile>
+#include <QDir>
 #include "NoteEditor/textnoteeditor.h"
 #include "qglobalshortcut.h"
+#include "QTextStream"
+#include "note.h"
+#include "archivewindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,16 +38,17 @@ public slots:
 
 private slots:
     void on_listWidget_customContextMenuRequested(const QPoint &pos);
-    //QVector<Note*> main_notes;
-    //QVector<Note*> archive_notes;
     void on_pushButton_clicked();
-    void slotDeleteRecord();
     void slotArchiveRecord();
 
+
+    void on_pushButton_archive_clicked();
 
 private:
     Ui::MainWindow *ui;
     QGlobalShortcut *shortcutFirst;
     QGlobalShortcut *shortcutSecond;
+    QVector<Note> notes;
+    QVector<Note> archived;
 };
 #endif // MAINWINDOW_H

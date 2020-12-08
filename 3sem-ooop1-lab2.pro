@@ -17,12 +17,16 @@ linux {
 win32: SOURCES += win/qglobalshortcut.cpp
 linux: SOURCES += x11/qglobalshortcut.cpp
 
-HEADERS  += qglobalshortcut.h
+HEADERS  += qglobalshortcut.h \
+    archivewindow.h \
+    note.h
 
 SOURCES += \
     NoteEditor/textnoteeditor.cpp \
+    archivewindow.cpp \
     main.cpp \
     mainwindow.cpp \
+    note.cpp
 
 HEADERS += \
     NoteEditor/textnoteeditor.h \
@@ -30,6 +34,7 @@ HEADERS += \
 
 FORMS += \
     NoteEditor/textnoteeditor.ui \
+    archivewindow.ui \
     mainwindow.ui
 
 # Default rules for deployment.
