@@ -7,6 +7,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QListWidgetItem>
 #include <QFile>
 #include <QDir>
 #include "NoteEditor/textnoteeditor.h"
@@ -40,9 +41,9 @@ private slots:
     void on_listWidget_customContextMenuRequested(const QPoint &pos);
     void on_pushButton_clicked();
     void slotArchiveRecord();
-
-
+    void slotEditRecord();
     void on_pushButton_archive_clicked();
+
 
 private:
     Ui::MainWindow *ui;

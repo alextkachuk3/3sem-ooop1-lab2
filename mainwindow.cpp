@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(ui->listWidget, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(slotEditRecord()));
+    //connect(ui->listWidget, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(slotEditRecord()));
     connect(ui->listWidget, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(slotCustomMenuRequested(QPoint)));
 
 
@@ -84,9 +84,13 @@ void MainWindow::on_listWidget_customContextMenuRequested(const QPoint &pos)
 {
     QMenu * menu = new QMenu(this);
     QAction * archiveNote = new QAction("Archive", this);
+    QAction * editNote = new QAction("Edit", this);
     connect(archiveNote, SIGNAL(triggered()), this, SLOT(slotArchiveRecord()));
+    connect(editNote, SIGNAL(triggered()), this, SLOT(slotEditRecord()));
     menu->addAction(archiveNote);
+       menu->addAction(editNote);
     menu->popup(ui->listWidget->viewport()->mapToGlobal(pos));
+
 }
 
 void MainWindow::slotOpenGK()
@@ -139,6 +143,24 @@ void MainWindow::slotArchiveRecord()
     notes.remove(row);
     to_archive.is_archived = true;
     archived.push_back(to_archive);
+}
+
+void MainWindow::slotEditRecord()
+{
+    int row = ui->listWidget->selectionModel()->currentIndex().row();
+    ui->listWidget->takeItem(row);
+    Note to_edit = notes[row];
+    notes.remove(row);
+    QString* new_text = new QString(to_edit.text);
+    auto nEditor = new textNoteEditor(new_text);
+    nEditor->setModal(true);
+    nEditor->exec();
+    new_text->resize(new_text->size() - 1);
+    to_edit.text=*new_text;
+    notes.push_back(to_edit);
+    ui->listWidget->addItem(to_edit.text);
+    ui->listWidget->item(row)->setBackground(QColor(qrand()%255,qrand()%255,qrand()%255));
+    delete new_text;
 }
 
 void MainWindow::on_pushButton_archive_clicked()
